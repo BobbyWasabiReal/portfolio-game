@@ -10,11 +10,11 @@
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "Map.tmx": {
-            "scale": 0.3383,
-            "selectedLayer": 1,
+            "scale": 2.3338,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 308.897428318061,
-                "y": 477.3869346733669
+                "x": 1253.1065215528322,
+                "y": 270.5887393949781
             }
         },
         "Portfolio Game.tsx": {
@@ -30,8 +30,10 @@
             "scaleInEditor": 1
         }
     },
+    "last.exportedFilePath": "/Users/bobbywasabi/Desktop/portfolio-project/Game Assets/Tileset",
     "last.imagePath": "/Users/bobbywasabi/Desktop/portfolio-project/Game Assets/Tileset/NinjaAdventure/Backgrounds/Tilesets/Interior",
     "map.height": 50,
+    "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 16,
     "map.tileWidth": 16,
@@ -40,8 +42,8 @@
     ],
     "project": "untitled.tiled-project",
     "recentFiles": [
-        "TilesetWallSimple.tsx",
         "Map.tmx",
+        "TilesetWallSimple.tsx",
         "TilesetFloor.tsx",
         "Portfolio Game.tsx"
     ],
