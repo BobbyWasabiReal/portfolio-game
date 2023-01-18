@@ -1,7 +1,23 @@
 canvas {
-  border: 1.2vmin rgb(60, 60, 60) solid;
+  border: 10px rgb(60, 60, 60) solid;
 }
 
 body {
   background-color: #000;
+}
+
+#game {
+  display: inline-block;
+  position: relative;
+}
+
+#transition {
+  background-color: black;
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  opacity: 0;
+  pointer-events: none;
 }

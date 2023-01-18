@@ -18,8 +18,8 @@ for (let i = 0; i < collisions.length; i += 100) {
 // Boundaries & Offset
 const boundaries = [];
 const offset = {
-  x: -1578,
-  y: -1325,
+  x: -1584,
+  y: -1322,
 };
 
 collisionsMap.forEach((row, i) => {
@@ -28,8 +28,8 @@ collisionsMap.forEach((row, i) => {
       boundaries.push(
         new Boundary({
           position: {
-            x: j * Boundary.width + offset.x,
-            y: i * Boundary.height + offset.y,
+            x: j * Boundary.width + offset.x + 4,
+            y: i * Boundary.height + offset.y + 3,
           },
           width: 48,
           height: 48,
@@ -37,6 +37,31 @@ collisionsMap.forEach((row, i) => {
       );
   });
 });
+
+// battleZones
+const battleZonesMap = [];
+for (let i = 0; i < battleZonesData.length; i += 100) {
+  battleZonesMap.push(battleZonesData.slice(i, 100 + i));
+}
+
+const battleZones = []
+battleZonesMap.forEach((row, i) => {
+  row.forEach((symbol, j) => {
+    if (symbol === 808)
+      battleZones.push(
+        new Boundary({
+          position: {
+            x: j * Boundary.width + offset.x + 4,
+            y: i * Boundary.height + offset.y + 3,
+          },
+          width: 48,
+          height: 48,
+        })
+      );
+  });
+});
+
+
 
 // Images
 // 1. Background
@@ -70,8 +95,8 @@ const keys = {
 // Player
 const player = new Sprite({
   position: {
-    x: canvas.width / 2 - 194 / 4 / 2,
-    y: canvas.height / 2 - 54 / 2,
+    x: canvas.width / 2 - 176 / 4 / 2,
+    y: canvas.height / 2 - 44 / 2,
   },
   image: playerDown,
   frames: {
@@ -105,7 +130,7 @@ const foreground = new Sprite({
 });
 
 // Movables Array
-const movables = [background, ...boundaries, foreground];
+const movables = [background, ...boundaries, foreground, ...battleZones];
 
 // Collision Function
 function rectangularCollision({ rectangle1, rectangle2 }) {
@@ -117,19 +142,71 @@ function rectangularCollision({ rectangle1, rectangle2 }) {
   )
 }
 
+// Battle Object
+const battle = {
+  initiated: false,
+}
+
 // Animation Loop
 function animate() {
-  window.requestAnimationFrame(animate);
+  const animationId = window.requestAnimationFrame(animate)
   background.draw();
   boundaries.forEach((boundary) => {
     boundary.draw()
   })
+  battleZones.forEach((battleZone) => {
+    battleZone.draw()
+  })
   player.draw()
   foreground.draw()
 
-  // Player Boundaries & Animations For Each Key
   let moving = true
   player.moving = false
+  if (battle.initiated) return
+
+  // BattleZone detection & activation
+  if (keys.w.pressed || keys.a.pressed || keys.s.pressed || keys.d.pressed) {
+    for (let i = 0; i < battleZones.length; i++) {
+      const battleZone = battleZones[i]
+      const overlappingArea =
+        (Math.min( player.position.x + player.width, battleZone.position.x + battleZone.width) 
+          - Math.max(player.position.x, battleZone.position.x))
+          * (Math.min( player.position.y + player.height, battleZone.position.y + battleZone.height)
+          - Math.max(player.position.y, battleZone.position.y))
+        
+      if (
+        rectangularCollision({
+          rectangle1: player,
+          rectangle2: battleZone
+        }) && 
+        overlappingArea > (player.width * player.height) / 2
+        && Math.random() < 0.01
+      ) {
+        console.log('battle initiated')
+        // deactivate current animation loop
+        window.cancelAnimationFrame(animationId)
+        battle.initiated = true
+        gsap.to('#transition', {
+          opacity: 1,
+          repeat: 4,
+          yoyo: true,
+          duration: .3,
+          onComplete() {
+            gsap.to('#transition', {
+              opacity: 1,
+              duration: 0.4,
+            }),
+            
+            // activate battle animation loop
+            animateBattle();
+          }
+        })
+        break
+      }
+    }
+  }
+
+  // Player Boundaries & Animations For Each Key
   if (keys.w.pressed && lastKey === 'w') {
     player.moving = true
     player.image = player.sprites.up
@@ -237,6 +314,11 @@ function animate() {
   }
 }
 animate()
+
+function animateBattle() {
+  window.requestAnimationFrame(animateBattle);
+  console.log('battle animation loop')
+}
 
 /*----- Event Listeners -----*/
 
