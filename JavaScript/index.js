@@ -318,7 +318,7 @@ function animate() {
       })
   }
 }
-animate()
+// animate()
 
 // Battle Background
 const battleBackgroundImage = new Image()
@@ -336,7 +336,7 @@ function animateBattle() {
   window.requestAnimationFrame(animateBattle);
   battleBackground.draw();
 }
-
+animateBattle();
 
 // Key Press & Release Event Listeners
 let lastKey = "";
