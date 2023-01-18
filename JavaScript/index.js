@@ -195,10 +195,15 @@ function animate() {
             gsap.to('#transition', {
               opacity: 1,
               duration: 0.4,
-            }),
-            
-            // activate battle animation loop
-            animateBattle();
+              onComplete() {
+                // activate battle animation loop
+                animateBattle();
+                gsap.to('#transition', {
+                  opacity: 0,
+                duration: 0.4,
+                })
+              }
+            })
           }
         })
         break
@@ -315,13 +320,25 @@ function animate() {
 }
 animate()
 
+// Battle Background
+const battleBackgroundImage = new Image()
+battleBackgroundImage.src = './Images/battleBackground.png'
+const battleBackground = new Sprite({
+  position: {
+    x: 0,
+    y: 0
+  },
+  image: battleBackgroundImage
+})
+
+// Battle Animation Loop
 function animateBattle() {
   window.requestAnimationFrame(animateBattle);
-  console.log('battle animation loop')
+  battleBackground.draw();
 }
 
-/*----- Event Listeners -----*/
 
+// Key Press & Release Event Listeners
 let lastKey = "";
 window.addEventListener("keydown", (e) => {
   switch (e.key) {
