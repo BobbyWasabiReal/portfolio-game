@@ -347,13 +347,30 @@ HampterImage.src = './Images/Characters/Pokemon/Hampter.png'
 
 const Hampter = new Sprite({
   position: {
-    x: 740,
+    x: 730,
     y: 190
   },
   image: HampterImage,
   frames: {
     max: 4,
-    hold: 40
+    hold: 30
+  },
+  animate: true,
+})
+
+// Nohtyp
+const NohtypImage = new Image()
+NohtypImage.src = './Images/Characters/Pokemon/Nohtyp.png'
+
+const Nohtyp = new Sprite({
+  position: {
+    x: 240,
+    y: 390
+  },
+  image: NohtypImage,
+  frames: {
+    max: 4,
+    hold: 30
   },
   animate: true,
 })
@@ -363,6 +380,7 @@ function animateBattle() {
   window.requestAnimationFrame(animateBattle);
   battleBackground.draw();
   Hampter.draw();
+  Nohtyp.draw();
 }
 animateBattle();
 
