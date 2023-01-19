@@ -5,6 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
     <script
       defer
       src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"
@@ -22,8 +28,34 @@
     <nav></nav>
     <div id="game">
       <div id="transition"></div>
+      <!-- Hampter HP -->
+      <div id="hampter">
+        <h1 class="pkmn-name">Hampter <span class="right">Lv.4</span></h1>
+        <div id="hampter-hp">
+          <div id="hampter-maxhp"></div>
+          <div id="hampter-currhp"></div>
+        </div>
+      </div>
+      <!-- Nohtyp HP -->
+      <div id="nohtyp">
+        <h1 class="pkmn-name">Nohtyp <span class="right">Lv.5</span></h1>
+        <div id="nohtyp-hp">
+          <div id="nohtyp-maxhp"></div>
+          <div id="nohtyp-currhp"></div>
+        </div>
+      </div>
       <canvas></canvas>
-      <div id="battle-text"></div>
+      <div id="battle-text">
+        <div id="attack-interface">
+          <button class="atk-button">Tackle</button>
+          <button class="atk-button">Bite</button>
+          <button class="atk-button">Ember</button>
+          <button class="atk-button">Sludge</button>
+        </div>
+        <div>
+          <h1 id="attack-type">Attack Type:</h1>
+        </div>
+      </div>
     </div>
     <footer></footer>
   </body>

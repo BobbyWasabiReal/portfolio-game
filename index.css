@@ -6,6 +6,10 @@ body {
   background-color: #000;
 }
 
+.right {
+  float: right;
+}
+
 #game {
   display: inline-block;
   position: relative;
@@ -23,10 +27,108 @@ body {
 }
 
 #battle-text {
-  background-color: rgba(186, 186, 186, 0.6);
+  display: flex;
+  background-color: rgba(255, 255, 255, 1);
   position: absolute;
-  height: 110px;
+  height: 95px;
   left: 10px;
   right: 10px;
   bottom: 10px;
+  /* opacity: 0; */
+  border-top: 4px black solid;
+}
+
+#attack-type {
+  font-family: 'Press Start 2P';
+  font-size: 20px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  height: 95px;
+  border-left: 4px black solid;
+  padding-left: 8vmin;
+}
+
+#attack-interface {
+  width: 66.66%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.atk-button {
+  font-family: 'Press Start 2P';
+  font-size: 16px;
+  background-color: white;
+  border: 1px rgb(222, 221, 221) solid;
+  transition: 200ms;
+}
+
+.atk-button:hover {
+  color: white;
+  background-color: rgb(131, 131, 131);
+  border: 1px black solid;
+  cursor: pointer;
+}
+
+.pkmn-name {
+  font-family: 'Press Start 2P';
+  font-size: 16px;
+}
+
+#hampter {
+  background-color: white;
+  width: 250px;
+  position: absolute;
+  top: 80px;
+  left: 100px;
+  border: 4px black solid;
+  padding: 10px;
+}
+
+#hampter-hp {
+  position: relative;
+}
+
+#hampter-maxhp {
+  height: 5px;
+  background-color: rgb(140, 140, 140);
+  margin-top: 5px;
+}
+
+#hampter-currhp {
+  height: 5px;
+  background-color: rgb(49, 211, 21);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+#nohtyp {
+  background-color: white;
+  width: 250px;
+  position: absolute;
+  top: 380px;
+  right: 100px;
+  border: 4px black solid;
+  padding: 1.2vmin;
+}
+
+#nohtyp-hp {
+  position: relative;
+}
+
+#nohtyp-maxhp {
+  height: 5px;
+  background-color: rgb(140, 140, 140);
+  margin-top: 5px;
+}
+
+#nohtyp-currhp {
+  height: 5px;
+  background-color: rgb(49, 211, 21);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
 }

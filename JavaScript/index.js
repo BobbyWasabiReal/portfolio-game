@@ -364,13 +364,13 @@ NohtypImage.src = './Images/Characters/Pokemon/Nohtyp.png'
 
 const Nohtyp = new Sprite({
   position: {
-    x: 240,
+    x: 230,
     y: 390
   },
   image: NohtypImage,
   frames: {
     max: 4,
-    hold: 30
+    hold: 15
   },
   animate: true,
 })
@@ -385,6 +385,21 @@ function animateBattle() {
 animateBattle();
 
 /*-- Event Listeners --*/
+
+// Battle Move Event Listeners
+document.querySelectorAll('button').forEach((button) => {
+  button.addEventListener('click', () => {
+    Nohtyp.attack({
+      attack: {
+        name: 'Tackle',
+        damage: 10,
+        type: 'Normal'
+      },
+      target: Hampter
+    })
+  })
+})
+
 // Key Press & Release Event Listeners
 let lastKey = "";
 window.addEventListener("keydown", (e) => {
