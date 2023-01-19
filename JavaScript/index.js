@@ -1,3 +1,5 @@
+/*-- General GamePlay --*/
+
 // Canvas
 const canvas = document.querySelector("canvas");
 
@@ -62,7 +64,6 @@ battleZonesMap.forEach((row, i) => {
 });
 
 
-
 // Images
 // 1. Background
 const image = new Image();
@@ -101,6 +102,7 @@ const player = new Sprite({
   image: playerDown,
   frames: {
     max: 4,
+    hold: 10,
   },
   // Player Animations
   sprites: {
@@ -147,6 +149,9 @@ const battle = {
   initiated: false,
 }
 
+
+/*-- Animation function --*/
+
 // Animation Loop
 function animate() {
   const animationId = window.requestAnimationFrame(animate)
@@ -161,7 +166,7 @@ function animate() {
   foreground.draw()
 
   let moving = true
-  player.moving = false
+  player.animate = false
   if (battle.initiated) return
 
   // BattleZone detection & activation
@@ -213,7 +218,7 @@ function animate() {
 
   // Player Boundaries & Animations For Each Key
   if (keys.w.pressed && lastKey === 'w') {
-    player.moving = true
+    player.animate = true
     player.image = player.sprites.up
     for (let i = 0; i < boundaries.length; i++) {
       const boundary = boundaries[i]
@@ -239,7 +244,7 @@ function animate() {
         movable.position.y += 3
       })
   } else if (keys.a.pressed && lastKey === 'a') {
-    player.moving = true
+    player.animate = true
     player.image = player.sprites.left
     for (let i = 0; i < boundaries.length; i++) {
       const boundary = boundaries[i]
@@ -265,7 +270,7 @@ function animate() {
         movable.position.x += 3
       })
   } else if (keys.s.pressed && lastKey === 's') {
-    player.moving = true
+    player.animate = true
     player.image = player.sprites.down
     for (let i = 0; i < boundaries.length; i++) {
       const boundary = boundaries[i]
@@ -291,7 +296,7 @@ function animate() {
         movable.position.y -= 3
       })
   } else if (keys.d.pressed && lastKey === 'd') {
-    player.moving = true
+    player.animate = true
     player.image = player.sprites.right
     for (let i = 0; i < boundaries.length; i++) {
       const boundary = boundaries[i]
@@ -320,6 +325,9 @@ function animate() {
 }
 // animate()
 
+
+/*-- Battles --*/
+
 // Battle Background
 const battleBackgroundImage = new Image()
 battleBackgroundImage.src = './Images/battleBackground.png'
@@ -331,13 +339,34 @@ const battleBackground = new Sprite({
   image: battleBackgroundImage
 })
 
+/*-- Pokémon --*/
+
+// Hampter
+const HampterImage = new Image()
+HampterImage.src = './Images/Characters/Pokemon/Hampter.png'
+
+const Hampter = new Sprite({
+  position: {
+    x: 740,
+    y: 190
+  },
+  image: HampterImage,
+  frames: {
+    max: 4,
+    hold: 40
+  },
+  animate: true,
+})
+
 // Battle Animation Loop
 function animateBattle() {
   window.requestAnimationFrame(animateBattle);
   battleBackground.draw();
+  Hampter.draw();
 }
 animateBattle();
 
+/*-- Event Listeners --*/
 // Key Press & Release Event Listeners
 let lastKey = "";
 window.addEventListener("keydown", (e) => {
