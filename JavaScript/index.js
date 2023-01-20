@@ -376,12 +376,17 @@ const Nohtyp = new Sprite({
   animate: true,
 })
 
+const renderedSprites = []
 // Battle Animation Loop
 function animateBattle() {
   window.requestAnimationFrame(animateBattle);
   battleBackground.draw();
   Hampter.draw();
   Nohtyp.draw();
+
+  renderedSprites.forEach((sprite) => {
+    sprite.draw()
+  });
 }
 animateBattle();
 
@@ -389,14 +394,14 @@ animateBattle();
 /*-- Event Listeners --*/
 
 // Battle Move Event Listeners
-
 // Tackle
 document.querySelectorAll('button').forEach((button) => {
   button.addEventListener('click', (e) => {
     const selectedAttack = attacks[e.currentTarget.innerHTML]
     Nohtyp.attack({
       attack: selectedAttack,
-      target: Hampter
+      target: Hampter,
+      renderedSprites
     })
   })
 })

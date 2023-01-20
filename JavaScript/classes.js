@@ -84,9 +84,23 @@ class Sprite {
     }
   }
 
-  attack({ attack, target }) {
+  attack({ attack, target, renderedSprites }) {
+    // This is the switch statement that is responsible for the animations of the different attacks
     switch (attack.name) {
       case "Ember":
+        // Ember Image
+        const emberImage = new Image();
+        emberImage.src = "./Images/Attacks/Ember.png";
+
+        const ember = new Sprite({
+          position: {
+            x: this.position.x,
+            y: this.position.y
+          },
+          image: emberImage,
+        });
+
+        renderedSprites.push(ember);
 
         break;
       case "Poison Shot":
