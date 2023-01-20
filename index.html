@@ -20,6 +20,7 @@
     ></script>
     <script defer src="JavaScript/data/collisions.js"></script>
     <script defer src="JavaScript/data/battlezones.js"></script>
+    <script defer src="JavaScript/data/attacks.js"></script>
     <script defer src="JavaScript/classes.js"></script>
     <script defer src="JavaScript/index.js"></script>
     <title>Bobby Wasabi</title>
@@ -28,7 +29,7 @@
     <nav></nav>
     <div id="game">
       <div id="transition"></div>
-      <!-- Hampter HP -->
+      <!-- Hampter (Enemy) HP -->
       <div id="hampter">
         <h1 class="pkmn-name">Hampter <span class="right">Lv.4</span></h1>
         <div id="hampter-hp">
@@ -36,7 +37,7 @@
           <div id="hampter-currhp"></div>
         </div>
       </div>
-      <!-- Nohtyp HP -->
+      <!-- Nohtyp (Player) HP -->
       <div id="nohtyp">
         <h1 class="pkmn-name">Nohtyp <span class="right">Lv.5</span></h1>
         <div id="nohtyp-hp">
@@ -50,7 +51,7 @@
           <button class="atk-button">Tackle</button>
           <button class="atk-button">Bite</button>
           <button class="atk-button">Ember</button>
-          <button class="atk-button">Sludge</button>
+          <button class="atk-button">Poison Shot</button>
         </div>
         <div>
           <h1 id="attack-type">Attack Type:</h1>

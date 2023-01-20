@@ -1,4 +1,4 @@
-/*-- General GamePlay --*/
+/*-- General GamePlay & Rendering --*/
 
 // Canvas
 const canvas = document.querySelector("canvas");
@@ -353,9 +353,10 @@ const Hampter = new Sprite({
   image: HampterImage,
   frames: {
     max: 4,
-    hold: 30
+    hold: 28
   },
   animate: true,
+  isEnemy: true
 })
 
 // Nohtyp
@@ -370,7 +371,7 @@ const Nohtyp = new Sprite({
   image: NohtypImage,
   frames: {
     max: 4,
-    hold: 15
+    hold: 18
   },
   animate: true,
 })
@@ -384,17 +385,17 @@ function animateBattle() {
 }
 animateBattle();
 
+
 /*-- Event Listeners --*/
 
 // Battle Move Event Listeners
+
+// Tackle
 document.querySelectorAll('button').forEach((button) => {
-  button.addEventListener('click', () => {
+  button.addEventListener('click', (e) => {
+    const selectedAttack = attacks[e.currentTarget.innerHTML]
     Nohtyp.attack({
-      attack: {
-        name: 'Tackle',
-        damage: 10,
-        type: 'Normal'
-      },
+      attack: selectedAttack,
       target: Hampter
     })
   })
