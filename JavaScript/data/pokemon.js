@@ -1,11 +1,3 @@
-// Nohyp Image
-const NohtypImage = new Image()
-NohtypImage.src = './Images/Characters/Pokemon/Nohtyp.png'
-
-// Hampter Image
-const HampterImage = new Image()
-HampterImage.src = './Images/Characters/Pokemon/Hampter.png'
-
 // Pokémon Info
 const pokemon = {
   Nohtyp: {
@@ -14,7 +6,9 @@ const pokemon = {
         x: 230,
         y: 390
       },
-      image: NohtypImage,
+      image: {
+        src: './Images/Characters/Pokemon/Nohtyp.png',
+      },
       frames: {
         max: 4,
         hold: 18
@@ -33,7 +27,9 @@ const pokemon = {
         x: 730,
         y: 190
       },
-      image: HampterImage,
+      image: {
+        src: './Images/Characters/Pokemon/Hampter.png',
+      },
       frames: {
         max: 4,
         hold: 28

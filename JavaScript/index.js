@@ -202,6 +202,7 @@ function animate() {
               duration: 0.4,
               onComplete() {
                 // activate battle animation loop
+                initBattle();
                 animateBattle();
                 gsap.to('#transition', {
                   opacity: 0,
