@@ -1,41 +1,10 @@
 /*-- Pokémon --*/
 
-// Hampter
-const HampterImage = new Image()
-HampterImage.src = './Images/Characters/Pokemon/Hampter.png'
+// Hampter Pokémon
+const Hampter = new Pokemon(pokemon.Hampter);
 
-const Hampter = new Sprite({
-  name: 'Hampter',
-  position: {
-    x: 730,
-    y: 190
-  },
-  image: HampterImage,
-  frames: {
-    max: 4,
-    hold: 28
-  },
-  animate: true,
-  isEnemy: true
-})
-
-// Nohtyp
-const NohtypImage = new Image()
-NohtypImage.src = './Images/Characters/Pokemon/Nohtyp.png'
-
-const Nohtyp = new Sprite({
-  name: 'Nohtyp',
-  position: {
-    x: 230,
-    y: 390
-  },
-  image: NohtypImage,
-  frames: {
-    max: 4,
-    hold: 18
-  },
-  animate: true,
-})
+// Nohtyp Pokémon
+const Nohtyp = new Pokemon(pokemon.Nohtyp);
 
 
 /*-- Battle Animation Loop --*/
@@ -43,14 +12,23 @@ const Nohtyp = new Sprite({
 // this is used to create depth in the battle animation loop.
 // That way the player's Pokémon sprite (Nohtyp) will be rendered on top of the Ember & Poison Shot sprite, and
 // both moves are rendered on top of the enemy's Pokémon (Hampter).
-const renderedSprites = [Hampter, Nohtyp]
+const renderedSprites = [Hampter, Nohtyp];
+
+// The buttons for the attacks are created here
+Nohtyp.attacks.forEach((attack) => {
+  const button = document.createElement('button');
+  button.innerHTML = attack.name;
+  button.setAttribute('class', 'atk-button');
+  document.querySelector('#attack-interface').append(button)
+})
+
 // Battle Animation Loop
 function animateBattle() {
   window.requestAnimationFrame(animateBattle);
   battleBackground.draw();
 
   renderedSprites.forEach((sprite) => {
-    sprite.draw()
+    sprite.draw();
   });
 }
 animateBattle();
@@ -58,7 +36,7 @@ animateBattle();
 
 /*-- Event Listeners --*/
 
-const queue = []
+const queue = [];
 // Attack Event Listener
 document.querySelectorAll('button').forEach((button) => {
   button.addEventListener('click', (e) => {
@@ -72,22 +50,27 @@ document.querySelectorAll('button').forEach((button) => {
       renderedSprites
     })
 
-    // Enemy's Pokémon attacks with a random attacka
+    // Enemy's Pokémon attacks with a random attack
+    // However, we transition between turns by pushing the attack into a queue
+    // (hence the queue.push).
     queue.push(() => {
       Hampter.attack({
         attack: attacks.Tackle,
         target: Nohtyp,
         renderedSprites
       })
-
     })
   })
 })
 
 // Battle Text Event Listener
 document.querySelector('#battle-text').addEventListener('click', (e) => {
+  // If the queue is not empty (meaning there is an attack in the queue), the attack will be executed
+  // then removed from the queue.
   if (queue.length > 0) {
     queue[0]()
     queue.shift()
+    // If the queue is empty, the battle text will be hidden.
+    // Effectively transitioning between turns.
   } else e.currentTarget.style.display = 'none'
 })
