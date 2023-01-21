@@ -53,12 +53,21 @@ document.querySelectorAll('button').forEach((button) => {
       renderedSprites
     })
 
+    // If enemy Pokémon's health is 0 or less, the enemy faints
     if (Hampter.health <= 0) {
       queue.push(() => {
         Hampter.faint();
       })
+      queue.push(() => {
+        // After the enemy faints, the game fades back to the map
+        gsap.to('#transition', {
+          opacity: 1,
+          onComplete: () => {
+            cancelAnimationFrame(animateBattle);
+          }
+        })
+      })
       
-      return
     }
     // Enemy's Pokémon attacks with a random attack
     // However, we transition between turns by pushing the attack into a queue
@@ -69,6 +78,13 @@ document.querySelectorAll('button').forEach((button) => {
         target: Nohtyp,
         renderedSprites
       })
+
+      // If player's Pokémon's health is 0 or less, the player faints
+      if (Nohtyp.health <= 0) {
+        queue.push(() => {
+          Nohtyp.faint();
+        })
+      }
     })
   
   })

@@ -124,7 +124,14 @@ class Pokemon extends Sprite {
   }
 
   faint() {
-    console.log(':(')
+    document.querySelector('#battle-text').innerHTML = (`${this.name} has fainted!`);
+    gsap.to(this.position, {
+      y: this.position.y + 80,
+      duration: 1.5,
+    });
+    gsap.to(this, {
+      opacity: 0,
+    });
   }
 
   attack({ attack, target, renderedSprites }) {
