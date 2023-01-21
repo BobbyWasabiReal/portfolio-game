@@ -43,6 +43,9 @@ document.querySelectorAll('button').forEach((button) => {
     // selectedAttack is the attack that the player selected
     const selectedAttack = attacks[e.currentTarget.innerHTML]
 
+    // attacksRNG selects a random attack from the enemy's attacks
+    const attacksRNG = Hampter.attacks[Math.floor(Math.random() * Hampter.attacks.length)]
+
     // Player's Pokémon attacks with the selected attack
     Nohtyp.attack({
       attack: selectedAttack,
@@ -50,16 +53,29 @@ document.querySelectorAll('button').forEach((button) => {
       renderedSprites
     })
 
+    if (Hampter.health <= 0) {
+      queue.push(() => {
+        Hampter.faint();
+      })
+      
+      return
+    }
     // Enemy's Pokémon attacks with a random attack
     // However, we transition between turns by pushing the attack into a queue
     // (hence the queue.push).
     queue.push(() => {
       Hampter.attack({
-        attack: attacks.Tackle,
+        attack: attacksRNG,
         target: Nohtyp,
         renderedSprites
       })
     })
+  
+  })
+
+  button.addEventListener('mouseover', (e) => {
+    const selectedAttack = attacks[e.currentTarget.innerHTML];
+    document.querySelector('#attack-info').innerHTML = (`Type: ${selectedAttack.type} Damage: ${selectedAttack.damage}`)
   })
 })
 

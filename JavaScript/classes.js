@@ -107,7 +107,7 @@ class Pokemon extends Sprite {
     rotation = 0,
     isEnemy = false,
     name,
-    attacks
+    attacks,
   }) {
     super({
       position,
@@ -123,13 +123,17 @@ class Pokemon extends Sprite {
     this.attacks = attacks
   }
 
+  faint() {
+    console.log(':(')
+  }
+
   attack({ attack, target, renderedSprites }) {
     // This is the text that appears after a Pokémon attacks ([insert Pokémon] used [insert attack]!)
     document.querySelector('#battle-text').style.display = "block";
     document.querySelector('#battle-text').innerHTML = (`${this.name} used ${attack.name}!`)
 
     // This simply updates the health "value" of the Pokémon
-    this.health -= attack.damage;
+    target.health -= attack.damage;
 
     // Differing health bar for player & enemy
     let healthBar = "#hampter-currhp";
@@ -168,7 +172,7 @@ class Pokemon extends Sprite {
           onComplete: () => {
             // Enemy Takes Damage
             gsap.to(healthBar, {
-              width: this.health + "%",
+              width: target.health + "%",
             });
 
             // Targeted Pokémon Flinches (moves side to side)
@@ -221,7 +225,7 @@ class Pokemon extends Sprite {
           onComplete: () => {
             // Enemy Takes Damage
             gsap.to(healthBar, {
-              width: this.health + "%",
+              width: target.health + "%",
             });
 
             // Targeted Pokémon Flinches (moves side to side)
@@ -268,7 +272,7 @@ class Pokemon extends Sprite {
             onComplete: () => {
               // Enemy Takes Damage
               gsap.to(healthBar, {
-                width: this.health + "%",
+                width: target.health + "%",
               });
 
               // Targeted Pokémon Flinches (moves side to side)

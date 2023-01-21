@@ -56,15 +56,17 @@ body {
   background-color: rgb(222, 222, 222);
 }
 
-#attack-type {
+#attack-info {
   font-family: 'Press Start 2P';
   font-size: 20px;
+  text-align: center;
   margin: 0;
   display: flex;
   align-items: center;
   height: 95px;
   border-left: 4px black solid;
-  padding-left: 8vmin;
+  max-width: 300px;
+  padding-left: 20px;
 }
 
 #attack-interface {
