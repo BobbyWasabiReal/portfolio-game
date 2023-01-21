@@ -339,72 +339,8 @@ const battleBackground = new Sprite({
   image: battleBackgroundImage
 })
 
-/*-- Pokémon --*/
-
-// Hampter
-const HampterImage = new Image()
-HampterImage.src = './Images/Characters/Pokemon/Hampter.png'
-
-const Hampter = new Sprite({
-  position: {
-    x: 730,
-    y: 190
-  },
-  image: HampterImage,
-  frames: {
-    max: 4,
-    hold: 28
-  },
-  animate: true,
-  isEnemy: true
-})
-
-// Nohtyp
-const NohtypImage = new Image()
-NohtypImage.src = './Images/Characters/Pokemon/Nohtyp.png'
-
-const Nohtyp = new Sprite({
-  position: {
-    x: 230,
-    y: 390
-  },
-  image: NohtypImage,
-  frames: {
-    max: 4,
-    hold: 18
-  },
-  animate: true,
-})
-
-const renderedSprites = []
-// Battle Animation Loop
-function animateBattle() {
-  window.requestAnimationFrame(animateBattle);
-  battleBackground.draw();
-  Hampter.draw();
-  Nohtyp.draw();
-
-  renderedSprites.forEach((sprite) => {
-    sprite.draw()
-  });
-}
-animateBattle();
-
 
 /*-- Event Listeners --*/
-
-// Battle Move Event Listeners
-// Tackle
-document.querySelectorAll('button').forEach((button) => {
-  button.addEventListener('click', (e) => {
-    const selectedAttack = attacks[e.currentTarget.innerHTML]
-    Nohtyp.attack({
-      attack: selectedAttack,
-      target: Hampter,
-      renderedSprites
-    })
-  })
-})
 
 // Key Press & Release Event Listeners
 let lastKey = "";

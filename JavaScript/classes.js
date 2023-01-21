@@ -28,6 +28,8 @@ class Sprite {
     sprites,
     animate = false,
     isEnemy = false,
+    rotation = 0,
+    name
   }) {
     this.position = position;
     this.image = image;
@@ -42,16 +44,30 @@ class Sprite {
     this.opacity = 1;
     this.health = 100;
     this.isEnemy = isEnemy;
+    this.rotation = rotation;
+    this.name = name;
   }
 
   draw() {
     c.save();
+    // " c.translate(...) " is used to rotate the sprite
+    c.translate(
+      this.position.x + this.width / 2,
+      this.position.y + this.height / 2
+    );
+    c.rotate(this.rotation);
+    c.translate(
+      -this.position.x - this.width / 2,
+      -this.position.y - this.height / 2
+    );
     // " c.globalAlpha = this.opacity " is used for the "flinching" animation
     c.globalAlpha = this.opacity;
+
     // " c.drawImage(...) " is used render all sprites in the game
     c.drawImage(
       // " this.image " is the image of the sprite we want to render
       this.image,
+
       // the code below crops the image for each frame
       this.frames.val * this.width,
       0,
@@ -84,26 +100,128 @@ class Sprite {
     }
   }
 
+  // Attacks
   attack({ attack, target, renderedSprites }) {
+    // This is the text that appears after a Pokémon attacks ([insert Pokémon] used [insert attack]!)
+    document.querySelector('#battle-text').style.display = "block";
+    document.querySelector('#battle-text').innerHTML = (`${this.name} used ${attack.name}!`)
+
+    // This simply updates the health "value" of the Pokémon
+    this.health -= attack.damage;
+
+    // Differing health bar for player & enemy
+    let healthBar = "#hampter-currhp";
+    if (this.isEnemy) healthBar = "#nohtyp-currhp";
+
+    // This is the rotation for the attack animations of Ember & Poison Shot
+    let rotation = 1;
+    if (this.isEnemy) rotation = -2;
+
     // This is the switch statement that is responsible for the animations of the different attacks
     switch (attack.name) {
+      case "Poison Shot":
+        // PoisonShot Image
+        const PoisonShotImage = new Image();
+        PoisonShotImage.src = "./Images/Attacks/PoisonShot.png";
+
+        const poisonShot = new Sprite({
+          position: {
+            x: this.position.x,
+            y: this.position.y
+          },
+          image: PoisonShotImage,
+          frames: {
+            max: 4,
+            hold: 5
+          },
+          animate: true,
+          rotation
+        });
+        renderedSprites.splice(1, 0, poisonShot);
+
+        gsap.to(poisonShot.position, {
+          x: target.position.x,
+          y: target.position.y,
+          duration: 0.5,
+          onComplete: () => {
+            // Enemy Takes Damage
+            gsap.to(healthBar, {
+              width: this.health + "%",
+            });
+
+            // Targeted Pokémon Flinches (moves side to side)
+            gsap.to(target.position, {
+              x: target.position.x + 20,
+              yoyo: true,
+              repeat: 5,
+              duration: 0.06,
+            });
+
+            // Targeted Pokémon flashes (opacity)
+            gsap.to(target, {
+              opacity: 0,
+              yoyo: true,
+              repeat: 1,
+              duration: 0.06,
+            });
+
+            // Remove Ember Sprite
+            renderedSprites.splice(1, 1);
+          }
+        })
+
+        break;
       case "Ember":
         // Ember Image
         const emberImage = new Image();
         emberImage.src = "./Images/Attacks/Ember.png";
 
+        // Ember Sprite
         const ember = new Sprite({
           position: {
             x: this.position.x,
             y: this.position.y
           },
           image: emberImage,
+          frames: {
+            max: 4,
+            hold: 5
+          },
+          animate: true,
+          rotation
         });
+        renderedSprites.splice(1, 0, ember);
 
-        renderedSprites.push(ember);
+        gsap.to(ember.position, {
+          x: target.position.x,
+          y: target.position.y,
+          duration: 0.5,
+          onComplete: () => {
+            // Enemy Takes Damage
+            gsap.to(healthBar, {
+              width: this.health + "%",
+            });
 
-        break;
-      case "Poison Shot":
+            // Targeted Pokémon Flinches (moves side to side)
+            gsap.to(target.position, {
+              x: target.position.x + 20,
+              yoyo: true,
+              repeat: 5,
+              duration: 0.06,
+            });
+
+            // Targeted Pokémon flashes (opacity)
+            gsap.to(target, {
+              opacity: 0,
+              yoyo: true,
+              repeat: 1,
+              duration: 0.06,
+            });
+
+            // Remove Ember Sprite
+            renderedSprites.splice(1, 1);
+          }
+        })
 
         break;
       case "Tackle":
@@ -111,16 +229,9 @@ class Sprite {
         // GSAP Timeline
         const gsapTL = gsap.timeline();
 
-        // This simply updates the health "value" of the Pokémon
-        this.health -= attack.damage;
-
         // Differing moving distance animation for player & enemy
         let moveDistance = 20;
         if (this.isEnemy) moveDistance = -20;
-
-        // Differing health bar for player & enemy
-        let healthBar = "#hampter-currhp";
-        if (this.isEnemy) healthBar = "#nohtyp-currhp";
 
         // Attack Animation
         gsapTL
@@ -146,11 +257,11 @@ class Sprite {
                 duration: 0.06,
               });
 
-              // Targeted Pokémon flashed
+              // Targeted Pokémon flashes (opacity)
               gsap.to(target, {
                 opacity: 0,
                 yoyo: true,
-                repeat: 5,
+                repeat: 1,
                 duration: 0.06,
               });
             },

@@ -26,7 +26,7 @@ body {
   pointer-events: none;
 }
 
-#battle-text {
+#battle-box {
   display: flex;
   background-color: rgba(255, 255, 255, 1);
   position: absolute;
@@ -36,6 +36,24 @@ body {
   bottom: 10px;
   /* opacity: 0; */
   border-top: 4px black solid;
+}
+
+#battle-text {
+  font-family: 'Press Start 2P';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  padding: 12px;
+  display: none;
+  transition: 200ms;
+}
+
+#battle-text:hover {
+  cursor: pointer;
+  background-color: rgb(222, 222, 222);
 }
 
 #attack-type {

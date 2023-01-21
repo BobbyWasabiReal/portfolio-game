@@ -31,7 +31,7 @@
         }
     },
     "last.exportedFilePath": "/Users/bobbywasabi/Desktop/portfolio-project/Game Assets/Tileset",
-    "last.imagePath": "/Users/bobbywasabi/Desktop/portfolio-project/Game Assets/Tileset/NinjaAdventure/Backgrounds/Tilesets/Interior",
+    "last.imagePath": "/Users/bobbywasabi/Desktop/Extra Assets/NinjaAdventure/Backgrounds/Tilesets",
     "map.height": 50,
     "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
     "map.lastUsedFormat": "tmx",
@@ -42,8 +42,8 @@
     ],
     "project": "untitled.tiled-project",
     "recentFiles": [
-        "Map.tmx",
         "TilesetWallSimple.tsx",
+        "Map.tmx",
         "TilesetFloor.tsx",
         "Portfolio Game.tsx"
     ],
