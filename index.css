@@ -10,6 +10,50 @@ body {
   float: right;
 }
 
+#controls {
+  background-color: rgba(0, 0, 0, 0.617);
+  position: absolute;
+  top: 10px;
+  bottom: 14px;
+  left: 10px;
+  right: 10px;
+  z-index: 9;
+}
+
+#controls:hover {
+  cursor: pointer;
+}
+
+#controls-title {
+  text-align: center;
+  font-family: 'Press Start 2P';
+  font-size: 50px;
+  color: white;
+  position: absolute;
+  top: 12%;
+  left: 3%;
+  right: 0;
+  bottom: 80%;
+}
+
+#controls-text {
+  text-align: center;
+  font-family: 'Press Start 2P';
+  color: white;
+  position: absolute;
+  top: 78%;
+  left: 0;
+  right: 0;
+  bottom: 30%;
+}
+
+#controls-img {
+  position: absolute;
+  width: 644px;
+  top: 50%;
+  left: 19%;
+}
+
 #game {
   display: inline-block;
   position: relative;
@@ -19,12 +63,16 @@ body {
   background-color: black;
   position: absolute;
   top: 10px;
-  bottom: 10px;
+  bottom: 14px;
   left: 10px;
   right: 10px;
   opacity: 0;
   pointer-events: none;
   z-index: 10;
+}
+
+#interface {
+  display: none;
 }
 
 #battle-box {
@@ -34,8 +82,7 @@ body {
   height: 95px;
   left: 10px;
   right: 10px;
-  bottom: 10px;
-  /* opacity: 0; */
+  bottom: 14px;
   border-top: 4px black solid;
 }
 

@@ -142,12 +142,12 @@ function rectangularCollision({ rectangle1, rectangle2 }) {
     rectangle1.position.y <= rectangle2.position.y + rectangle2.height &&
     rectangle1.position.y + rectangle1.height >= rectangle2.position.y
   )
-}
+};
 
 // Battle Object
 const battle = {
   initiated: false,
-}
+};
 
 
 /*-- Animation function --*/
@@ -157,27 +157,27 @@ function animate() {
   const animationId = window.requestAnimationFrame(animate)
   background.draw();
   boundaries.forEach((boundary) => {
-    boundary.draw()
+    boundary.draw();
   })
   battleZones.forEach((battleZone) => {
-    battleZone.draw()
+    battleZone.draw();
   })
-  player.draw()
-  foreground.draw()
+  player.draw();
+  foreground.draw();
 
-  let moving = true
-  player.animate = false
-  if (battle.initiated) return
+  let moving = true;
+  player.animate = false;
+  if (battle.initiated) return;
 
   // BattleZone detection & activation
   if (keys.w.pressed || keys.a.pressed || keys.s.pressed || keys.d.pressed) {
     for (let i = 0; i < battleZones.length; i++) {
-      const battleZone = battleZones[i]
+      const battleZone = battleZones[i];
       const overlappingArea =
         (Math.min( player.position.x + player.width, battleZone.position.x + battleZone.width) 
           - Math.max(player.position.x, battleZone.position.x))
           * (Math.min( player.position.y + player.height, battleZone.position.y + battleZone.height)
-          - Math.max(player.position.y, battleZone.position.y))
+          - Math.max(player.position.y, battleZone.position.y));
         
       if (
         rectangularCollision({
@@ -185,11 +185,12 @@ function animate() {
           rectangle2: battleZone
         }) && 
         overlappingArea > (player.width * player.height) / 2
-        && Math.random() < 0.01
+        && Math.random() < 0.008
       ) {
-        console.log('battle initiated')
         // deactivate current animation loop
         window.cancelAnimationFrame(animationId)
+        audio.Map.stop();
+        audio.Battle.play();
         battle.initiated = true
         gsap.to('#transition', {
           opacity: 1,
@@ -207,22 +208,22 @@ function animate() {
                 gsap.to('#transition', {
                   opacity: 0,
                 duration: 0.4,
-                })
+                });
               }
-            })
+            });
           }
-        })
-        break
+        });
+        break;
       }
     }
   }
 
   // Player Boundaries & Animations For Each Key
   if (keys.w.pressed && lastKey === 'w') {
-    player.animate = true
-    player.image = player.sprites.up
+    player.animate = true;
+    player.image = player.sprites.up;
     for (let i = 0; i < boundaries.length; i++) {
-      const boundary = boundaries[i]
+      const boundary = boundaries[i];
       if (
         rectangularCollision({
           rectangle1: player,
@@ -235,20 +236,20 @@ function animate() {
           }
         })
       ) {
-        moving = false
-        break
+        moving = false;
+        break;
       }
     }
 
     if (moving)
       movables.forEach((movable) => {
-        movable.position.y += 3
+        movable.position.y += 3;
       })
   } else if (keys.a.pressed && lastKey === 'a') {
-    player.animate = true
-    player.image = player.sprites.left
+    player.animate = true;
+    player.image = player.sprites.left;
     for (let i = 0; i < boundaries.length; i++) {
-      const boundary = boundaries[i]
+      const boundary = boundaries[i];
       if (
         rectangularCollision({
           rectangle1: player,
@@ -261,20 +262,20 @@ function animate() {
           }
         })
       ) {
-        moving = false
-        break
+        moving = false;
+        break;
       }
     }
 
     if (moving)
       movables.forEach((movable) => {
-        movable.position.x += 3
-      })
+        movable.position.x += 3;
+      });
   } else if (keys.s.pressed && lastKey === 's') {
-    player.animate = true
-    player.image = player.sprites.down
+    player.animate = true;
+    player.image = player.sprites.down;
     for (let i = 0; i < boundaries.length; i++) {
-      const boundary = boundaries[i]
+      const boundary = boundaries[i];
       if (
         rectangularCollision({
           rectangle1: player,
@@ -287,20 +288,20 @@ function animate() {
           }
         })
       ) {
-        moving = false
-        break
-      }
-    }
+        moving = false;
+        break;
+      };
+    };
 
     if (moving)
       movables.forEach((movable) => {
-        movable.position.y -= 3
+        movable.position.y -= 3;
       })
   } else if (keys.d.pressed && lastKey === 'd') {
-    player.animate = true
-    player.image = player.sprites.right
+    player.animate = true;
+    player.image = player.sprites.right;
     for (let i = 0; i < boundaries.length; i++) {
-      const boundary = boundaries[i]
+      const boundary = boundaries[i];
       if (
         rectangularCollision({
           rectangle1: player,
@@ -313,18 +314,17 @@ function animate() {
           }
         })
       ) {
-        moving = false
-        break
-      }
-    }
+        moving = false;
+        break;
+      };
+    };
 
     if (moving)
       movables.forEach((movable) => {
-        movable.position.x -= 3
-      })
+        movable.position.x -= 3;
+      });
   }
 }
-// animate()
 
 
 /*-- Battles --*/
@@ -338,7 +338,7 @@ const battleBackground = new Sprite({
     y: 0
   },
   image: battleBackgroundImage
-})
+});
 
 
 /*-- Event Listeners --*/
@@ -381,4 +381,25 @@ window.addEventListener("keyup", (e) => {
       keys.d.pressed = false;
       break;
   }
+});
+
+// Click Event Listener
+let clicked = false;
+window.addEventListener("click", () => {
+  if (!clicked) {
+    audio.Map.play();
+    clicked = true;
+  }
+});
+
+// Hide Controls On Click Event Listener
+const controls = document.querySelector("#controls");
+window.addEventListener("click", () => {
+  gsap.to("#controls", {
+    opacity: 0,
+    duration: 0.5,
+    onComplete: () => {
+      controls.style.display = "none";
+    }
+    });
 });

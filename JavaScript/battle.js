@@ -71,7 +71,9 @@ function initBattle() {
                 opacity: 0,
               });
 
+              audio.Victory.stop();
               battle.initiated = false;
+              audio.Map.play();
             },
           });
         });
@@ -105,6 +107,7 @@ function initBattle() {
                 });
 
                 battle.initiated = false;
+                audio.Map.play();
               },
             });
           });
@@ -129,8 +132,11 @@ function animateBattle() {
     sprite.draw();
   });
 }
-initBattle();
-animateBattle();
+animate();
+
+// For testing purposes
+// initBattle();
+// animateBattle();
 
 // Battle Text Event Listener
 document.querySelector("#battle-text").addEventListener("click", (e) => {

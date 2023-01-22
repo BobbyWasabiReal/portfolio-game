@@ -12,6 +12,12 @@
       rel="stylesheet"
     />
     <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"
+      integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
       defer
       src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"
       integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ=="
@@ -30,26 +36,31 @@
   </head>
   <body>
     <nav></nav>
-    <div id="transition"></div>
     <div id="game">
+    <div id="transition"></div>
+        <div id="controls">
+            <h1 id="controls-title">Controls:</h1>
+            <img src="./Images/Controls.png" alt="controls" id="controls-img">
+            <h2 id="controls-text">click to begin</h2>
+        </div>
       <canvas></canvas>
       <div id="interface">
         <!-- Hampter (Enemy) HP -->
-      <div id="hampter">
-        <h1 class="pkmn-name">Hampter <span class="right">Lv.4</span></h1>
-        <div id="hampter-hp">
-          <div id="hampter-maxhp"></div>
-          <div id="hampter-currhp"></div>
+        <div id="hampter">
+          <h1 class="pkmn-name">Hampter <span class="right">Lv.4</span></h1>
+          <div id="hampter-hp">
+            <div id="hampter-maxhp"></div>
+            <div id="hampter-currhp"></div>
+          </div>
         </div>
-      </div>
-      <!-- Nohtyp (Player) HP -->
-      <div id="nohtyp">
-        <h1 class="pkmn-name">Nohtyp <span class="right">Lv.5</span></h1>
-        <div id="nohtyp-hp">
-          <div id="nohtyp-maxhp"></div>
-          <div id="nohtyp-currhp"></div>
+        <!-- Nohtyp (Player) HP -->
+        <div id="nohtyp">
+          <h1 class="pkmn-name">Nohtyp <span class="right">Lv.5</span></h1>
+          <div id="nohtyp-hp">
+            <div id="nohtyp-maxhp"></div>
+            <div id="nohtyp-currhp"></div>
+          </div>
         </div>
-      </div>
         <div id="battle-box">
           <div id="battle-text"></div>
           <div id="attack-interface"></div>

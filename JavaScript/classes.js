@@ -116,32 +116,43 @@ class Pokemon extends Sprite {
       frames,
       sprites,
       animate,
-      rotation
-    })
-    this.health = 100
-    this.isEnemy = isEnemy
-    this.name = name
-    this.attacks = attacks
+      rotation,
+    });
+    this.health = 100;
+    this.isEnemy = isEnemy;
+    this.name = name;
+    this.attacks = attacks;
   }
 
+  // This is the function that is responsible for the "fainting" animation
   faint() {
-    document.querySelector('#battle-text').innerHTML = (`${this.name} has fainted!`);
+    document.querySelector(
+      "#battle-text"
+    ).innerHTML = `${this.name} has fainted!`;
     gsap.to(this.position, {
       y: this.position.y + 80,
       duration: 1.5,
       onComplete: () => {
         this.position.y -= 80;
-      }
+      },
     });
     gsap.to(this, {
       opacity: 0,
     });
+    // Stop the battle music
+    audio.Battle.stop();
+    // Only play the victory music if the player wins
+    if (this == Hampter) {
+      audio.Victory.play();
+    }
   }
 
   attack({ attack, target, renderedSprites }) {
     // This is the text that appears after a Pokémon attacks ([insert Pokémon] used [insert attack]!)
-    document.querySelector('#battle-text').style.display = "block";
-    document.querySelector('#battle-text').innerHTML = (`${this.name} used ${attack.name}!`)
+    document.querySelector("#battle-text").style.display = "block";
+    document.querySelector(
+      "#battle-text"
+    ).innerHTML = `${this.name} used ${attack.name}!`;
 
     // This simply updates the health "value" of the Pokémon
     target.health -= attack.damage;
@@ -157,6 +168,7 @@ class Pokemon extends Sprite {
     // This is the switch statement that is responsible for the animations of the different attacks
     switch (attack.name) {
       case "Poison Shot":
+        audio.PoisonShot.play();
         // PoisonShot Image
         const PoisonShotImage = new Image();
         PoisonShotImage.src = "./Images/Attacks/PoisonShot.png";
@@ -164,15 +176,15 @@ class Pokemon extends Sprite {
         const poisonShot = new Sprite({
           position: {
             x: this.position.x,
-            y: this.position.y
+            y: this.position.y,
           },
           image: PoisonShotImage,
           frames: {
             max: 4,
-            hold: 5
+            hold: 5,
           },
           animate: true,
-          rotation
+          rotation,
         });
         renderedSprites.splice(1, 0, poisonShot);
 
@@ -204,11 +216,12 @@ class Pokemon extends Sprite {
 
             // Remove Ember Sprite
             renderedSprites.splice(1, 1);
-          }
-        })
+          },
+        });
 
         break;
       case "Ember":
+        audio.Ember.play();
         // Ember Image
         const emberImage = new Image();
         emberImage.src = "./Images/Attacks/Ember.png";
@@ -217,15 +230,15 @@ class Pokemon extends Sprite {
         const ember = new Sprite({
           position: {
             x: this.position.x,
-            y: this.position.y
+            y: this.position.y,
           },
           image: emberImage,
           frames: {
             max: 4,
-            hold: 5
+            hold: 5,
           },
           animate: true,
-          rotation
+          rotation,
         });
         renderedSprites.splice(1, 0, ember);
 
@@ -257,8 +270,8 @@ class Pokemon extends Sprite {
 
             // Remove Ember Sprite
             renderedSprites.splice(1, 1);
-          }
-        })
+          },
+        });
 
         break;
       case "Tackle":
@@ -282,6 +295,7 @@ class Pokemon extends Sprite {
             duration: 0.1,
             onComplete: () => {
               // Enemy Takes Damage
+              audio.Tackle.play();
               gsap.to(healthBar, {
                 width: target.health + "%",
               });
