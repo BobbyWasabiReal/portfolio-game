@@ -11,7 +11,7 @@ class Boundary {
 
   draw() {
     // The " c.fillStyle = "rgba(255, 0, 0, 0.0)" " is more of a debugging tool for the boundaries
-    c.fillStyle = "rgba(255, 0, 0, 0.0)";
+    c.fillStyle = "rgba(255, 0, 0, 0.3)";
     // The Boundaries are drawn as a rectangle.
     // Position is the where the boundary is placed (kinda obvious).
     // Width & Height are the width and height of the boundary (I should probably become a detective... xD).
@@ -34,8 +34,8 @@ class Sprite {
     this.image = new Image();
     this.frames = { ...frames, val: 0, elapsed: 0 };
     this.image.onload = () => {
-      this.width = this.image.width / this.frames.max;
-      this.height = this.image.height;
+      this.width = this.image.width / this.frames.max * scale;
+      this.height = this.image.height * scale;
     };
     this.image.src = image.src;
 
@@ -61,15 +61,17 @@ class Sprite {
     // " c.globalAlpha = this.opacity " is used for the "flinching" animation
     c.globalAlpha = this.opacity;
 
+    // The following code below is responsible for cropping the image for each frame.
     const crop = {
       position: {
-        x: this.frames.val * this.width,
+        x: this.frames.val * (this.width / this.scale),
         y: 0,
       },
       width: this.image.width / this.frames.max,
       height: this.image.height,
     };
 
+    // image is the respective position and size of the sprite's image
     const image = {
       position: {
         x: this.position.x,
