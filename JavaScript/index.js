@@ -11,6 +11,12 @@ c.fillRect(0, 0, canvas.width, canvas.height);
 canvas.width = 1024;
 canvas.height = 576;
 
+// Characters
+const charactersMap = []
+for (let i = 0; i < charactersMapData.length; i += 100) {
+  charactersMap.push(charactersMapData.slice(i, 100 + i))
+}
+
 // Collisions
 const collisionsMap = [];
 for (let i = 0; i < collisions.length; i += 100) {

@@ -5,7 +5,7 @@ canvas {
 body {
   margin: 0;
   padding: 0;
-  background-color: #000;
+  background-color: rgb(18, 18, 18);
   text-align: center;
 }
 
@@ -16,13 +16,12 @@ body {
 nav {
   margin-top: -1vmin;
   margin-left: -1vmin;
-  margin-right: -1vmin;
   padding-left: 2vmin;
   height: 10vmin;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(53, 53, 53);
+  background-color: black;
   margin-bottom: 5vmin;
 }
 
@@ -45,22 +44,48 @@ nav a {
 
 #home {
   padding-left: 2vmin;
+  font-size: 32px;
+}
+
+#about, #skills, #projects, #experience {
+  font-family: 'Press Start 2P';
+  color: white;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
+  background-color: rgb(41, 41, 41);
+  border-radius: 2px;
+  padding: 1.5vmin;
+  margin-bottom: 5vmin;
 }
 
 #about {
-  text-align: center;
+  margin-top: -2vmin;
+}
+
+#about-text {
   font-family: 'Press Start 2P';
+  font-size: 15px;
   color: white;
-  padding: 2vmin;
-  margin: 5vmin;
-  max-width: 1000px;
-  background-color: rgb(53, 53, 53);
-  border-radius: 2px;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+#skills-title {
+  font-family: 'Press Start 2P';
+  font-size: 20px;
+  color: white;
+  text-align: left;
+  margin: 0;
+  padding: 0;
 }
 
 footer {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
-  background-color: rgb(53, 53, 53);
+  background-color: black;
   height: 5vmin;
 }
 
@@ -75,7 +100,15 @@ footer a{
 }
 
 footer a:hover, nav a:hover {
-  color: rgb(172, 171, 171);
+  color: rgb(97, 95, 95);
+}
+
+.footer-name {
+  color: white;
+  padding-left: 2vmin;
+  padding-right: 1vmin;
+  font-family: 'Press Start 2P';
+  font-size: 16px;
 }
 
 #controls {
@@ -125,6 +158,7 @@ footer a:hover, nav a:hover {
 #game {
   display: inline-block;
   position: relative;
+  margin-bottom: 4vmin;
 }
 
 #transition {
