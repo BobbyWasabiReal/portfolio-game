@@ -9,6 +9,8 @@ function rectangularCollision({ rectangle1, rectangle2 }) {
 }
 
 // Character Collision Detection
+// The checkForCharacterCollision function is for player & character/npc interactions
+// if the player collides with a character, the function will return the character
 function checkForCharacterCollision({
   characters,
   player,
@@ -18,7 +20,7 @@ function checkForCharacterCollision({
   for (let i = 0; i < characters.length; i++) {
     const character = characters[i];
 
-    // If the player collides with a character, the function will return
+    // If the player collides with a character, the function will return the character
     if (
       rectangularCollision({
         rectangle1: player,
