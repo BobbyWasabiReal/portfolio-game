@@ -4,7 +4,7 @@ const pokemon = {
       name: 'Nohtyp',
       position: {
         x: 230,
-        y: 390
+        y: 365
       },
       image: {
         src: './Images/Characters/Pokemon/Nohtyp.png',
@@ -13,6 +13,7 @@ const pokemon = {
         max: 4,
         hold: 18
       },
+      scale: 1.25,
       animate: true,
       attacks: [
         attacks.Tackle,

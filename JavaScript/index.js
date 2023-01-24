@@ -383,18 +383,15 @@ window.addEventListener("keyup", (e) => {
   }
 });
 
-// Click Event Listener
+
+// Hide Controls & Music On Click Event Listener
 let clicked = false;
-window.addEventListener("click", () => {
+const controls = document.querySelector("#controls");
+controls.addEventListener("click", () => {
   if (!clicked) {
     audio.Map.play();
     clicked = true;
   }
-});
-
-// Hide Controls On Click Event Listener
-const controls = document.querySelector("#controls");
-window.addEventListener("click", () => {
   gsap.to("#controls", {
     opacity: 0,
     duration: 0.5,

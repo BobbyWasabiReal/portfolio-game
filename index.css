@@ -3,11 +3,79 @@ canvas {
 }
 
 body {
+  margin: 0;
+  padding: 0;
   background-color: #000;
+  text-align: center;
 }
 
 .right {
   float: right;
+}
+
+nav {
+  margin-top: -1vmin;
+  margin-left: -1vmin;
+  margin-right: -1vmin;
+  padding-left: 2vmin;
+  height: 8vmin;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(53, 53, 53);
+  margin-bottom: 5vmin;
+}
+
+nav a {
+  font-family: 'Press Start 2P';
+  font-size: 20px;
+  color: white;
+  text-decoration: none;
+  transition: 200ms;
+}
+
+.nav-links {
+  padding-right: 2vmin;
+  font-size: 8px;
+}
+
+.footer-links {
+  margin-top: 1.8vmin;
+}
+
+#home {
+  padding-left: 2vmin;
+}
+
+#about {
+  text-align: center;
+  font-family: 'Press Start 2P';
+  color: white;
+  padding: 2vmin;
+  margin: 5vmin;
+  max-width: 1000px;
+  background-color: rgb(53, 53, 53);
+  border-radius: 2px;
+}
+
+footer {
+  width: 100%;
+  background-color: rgb(53, 53, 53);
+  height: 5vmin;
+}
+
+footer a{
+  color: white;
+  padding-left: 2vmin;
+  padding-right: 1vmin;
+  font-family: 'Press Start 2P';
+  font-size: 16px;
+  text-decoration: none;
+  transition: 200ms;
+}
+
+footer a:hover, nav a:hover {
+  color: rgb(172, 171, 171);
 }
 
 #controls {
@@ -88,6 +156,7 @@ body {
 
 #battle-text {
   font-family: 'Press Start 2P';
+  text-align: left;
   position: absolute;
   top: 0;
   left: 0;
@@ -151,6 +220,7 @@ body {
   left: 100px;
   border: 4px black solid;
   padding: 10px;
+  text-align: left;
 }
 
 #hampter-hp {
@@ -180,6 +250,7 @@ body {
   right: 100px;
   border: 4px black solid;
   padding: 1.2vmin;
+  text-align: left;
 }
 
 #nohtyp-hp {
