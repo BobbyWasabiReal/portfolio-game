@@ -26,8 +26,8 @@ for (let i = 0; i < collisions.length; i += 100) {
 // Boundaries & Offset
 const boundaries = [];
 const offset = {
-  x: -1584,
-  y: -1322,
+  x: -1580,
+  y: -1320,
 };
 
 collisionsMap.forEach((row, i) => {
@@ -36,8 +36,8 @@ collisionsMap.forEach((row, i) => {
       boundaries.push(
         new Boundary({
           position: {
-            x: j * Boundary.width + offset.x + 4,
-            y: i * Boundary.height + offset.y + 3,
+            x: j * Boundary.width + offset.x,
+            y: i * Boundary.height + offset.y,
           },
           width: 48,
           height: 48,
@@ -62,8 +62,8 @@ battleZonesMap.forEach((row, i) => {
       battleZones.push(
         new Boundary({
           position: {
-            x: j * Boundary.width + offset.x + 4,
-            y: i * Boundary.height + offset.y + 3,
+            x: j * Boundary.width + offset.x,
+            y: i * Boundary.height + offset.y,
           },
           width: 48,
           height: 48,
@@ -135,8 +135,8 @@ charactersMap.forEach((row, i) => {
       characters.push(
         new Character({
           position: {
-            x: j * Boundary.width + offset.x + 3,
-            y: i * Boundary.height + offset.y + 3,
+            x: j * Boundary.width + offset.x,
+            y: i * Boundary.height + offset.y,
           },
           image: villagerImg,
           frames: {
@@ -176,8 +176,8 @@ charactersMap.forEach((row, i) => {
       characters.push(
         new Character({
           position: {
-            x: j * Boundary.width + offset.x,
-            y: i * Boundary.height + offset.y,
+            x: j * Boundary.width + offset.x - 4,
+            y: i * Boundary.height + offset.y - 2,
           },
           image: signImg,
           frames: {
@@ -195,8 +195,8 @@ charactersMap.forEach((row, i) => {
       characters.push(
         new Character({
           position: {
-            x: j * Boundary.width + offset.x + 4,
-            y: i * Boundary.height + offset.y,
+            x: j * Boundary.width + offset.x - 4,
+            y: i * Boundary.height + offset.y - 2,
           },
           image: signImg,
           frames: {
@@ -214,8 +214,8 @@ charactersMap.forEach((row, i) => {
       characters.push(
         new Character({
           position: {
-            x: j * Boundary.width + offset.x,
-            y: i * Boundary.height + offset.y,
+            x: j * Boundary.width + offset.x - 4,
+            y: i * Boundary.height + offset.y - 2,
           },
           image: signImg,
           frames: {
@@ -233,8 +233,8 @@ charactersMap.forEach((row, i) => {
       characters.push(
         new Character({
           position: {
-            x: j * Boundary.width + offset.x,
-            y: i * Boundary.height + offset.y,
+            x: j * Boundary.width + offset.x - 4,
+            y: i * Boundary.height + offset.y - 2,
           },
           image: caveGirlImg,
           frames: {
@@ -258,8 +258,8 @@ charactersMap.forEach((row, i) => {
       characters.push(
         new Character({
           position: {
-            x: j * Boundary.width + offset.x,
-            y: i * Boundary.height + offset.y,
+            x: j * Boundary.width + offset.x - 4,
+            y: i * Boundary.height + offset.y - 2,
           },
           image: RedNinja2LImg,
           frames: {
@@ -280,8 +280,8 @@ charactersMap.forEach((row, i) => {
       characters.push(
         new Character({
           position: {
-            x: j * Boundary.width + offset.x,
-            y: i * Boundary.height + offset.y,
+            x: j * Boundary.width + offset.x - 4,
+            y: i * Boundary.height + offset.y - 2,
           },
           image: RedNinja2RImg,
           frames: {
@@ -303,8 +303,8 @@ charactersMap.forEach((row, i) => {
       characters.push(
         new Character({
           position: {
-            x: j * Boundary.width + offset.x,
-            y: i * Boundary.height + offset.y,
+            x: j * Boundary.width + offset.x - 4,
+            y: i * Boundary.height + offset.y - 2,
           },
           image: masterImg,
           frames: {
@@ -316,7 +316,9 @@ charactersMap.forEach((row, i) => {
             "Hello and Welcome to the Experience Dojo!", 
             "Gabriel's previous experience(s) is/are...",
             "as a Volunteer Sound Technician...",
-            "From 2018 - current, He has worked with a team of 6 to maintain and manage the sound system.",
+            "From 2018 - current, He has worked with a team of 7 to create, maintain, and manage a sound system.",
+            "Also, have you happen to see any really large racoons around?",
+            "I haven't been able to find our food and other supplies."
         ],
         })
       );
@@ -327,8 +329,8 @@ charactersMap.forEach((row, i) => {
       characters.push(
         new Character({
           position: {
-            x: j * Boundary.width + offset.x,
-            y: i * Boundary.height + offset.y,
+            x: j * Boundary.width + offset.x - 4,
+            y: i * Boundary.height + offset.y - 2,
           },
           image: monkImg,
           frames: {
@@ -348,8 +350,8 @@ charactersMap.forEach((row, i) => {
       characters.push(
         new Character({
           position: {
-            x: j * Boundary.width + offset.x,
-            y: i * Boundary.height + offset.y,
+            x: j * Boundary.width + offset.x - 4,
+            y: i * Boundary.height + offset.y - 2,
           },
           image: monk2Img,
           frames: {
@@ -370,8 +372,8 @@ charactersMap.forEach((row, i) => {
       characters.push(
         new Character({
           position: {
-            x: j * Boundary.width + offset.x,
-            y: i * Boundary.height + offset.y,
+            x: j * Boundary.width + offset.x - 4,
+            y: i * Boundary.height + offset.y - 2,
           },
           image: oldMan2Img,
           frames: {
@@ -394,8 +396,8 @@ charactersMap.forEach((row, i) => {
       characters.push(
         new Character({
           position: {
-            x: j * Boundary.width + offset.x,
-            y: i * Boundary.height + offset.y,
+            x: j * Boundary.width + offset.x - 4,
+            y: i * Boundary.height + offset.y - 2,
           },
           image: samuraiImg,
           frames: {
@@ -420,8 +422,8 @@ charactersMap.forEach((row, i) => {
       characters.push(
         new Character({
           position: {
-            x: j * Boundary.width + offset.x,
-            y: i * Boundary.height + offset.y,
+            x: j * Boundary.width + offset.x - 4,
+            y: i * Boundary.height + offset.y - 2,
           },
           image: mayorImg,
           frames: {
@@ -433,8 +435,20 @@ charactersMap.forEach((row, i) => {
             "Hello, and welcome to Project City!",
             "I am the mayor...",
             "Some of Gabriel's Projects are...",
-            "Simon",
-            // 'Github: <a src="https://github.com/BobbyWasabiReal/Project-1-Browser-Based-Game">Link</a>',
+            "Simon: <br /> A browser-based game based on Simon!",
+            'Github: <a href="https://github.com/BobbyWasabiReal/Project-1-Browser-Based-Game">Link</a>',
+            "The Vault: <br /> An In-game inventory sharing app!",
+            'GitHub: <a href="https://github.com/BobbyWasabiReal/The-Vault">Link</a>',
+            'Heroku Live: <a href="https://the-vault-wasabi.herokuapp.com/">Link</a>',
+            "One World Recipes: <br /> A recipe sharing app!",
+            'GitHub: <a href="https://github.com/BobbyWasabiReal/the-imposters">Link</a>',
+            "PokéZon: <br /> The Pokémon Amazon!",
+            'GitHub: <a href="https://github.com/BobbyWasabiReal/Pok-Zon">Link</a>',
+            'Heroku Live: <a href="https://pokezon.herokuapp.com/">Link</a>',
+            "PS: The Heroku links may take 10-30 seconds to load...",
+            "Thank You and Have Fun!",
+            "PSS: If you see any man-sized raccoons, please let me know...",
+            "They're a bit of a nuisance..."
         ],
         })
       );
@@ -445,8 +459,8 @@ charactersMap.forEach((row, i) => {
       characters.push(
         new Character({
           position: {
-            x: j * Boundary.width + offset.x,
-            y: i * Boundary.height + offset.y,
+            x: j * Boundary.width + offset.x - 4,
+            y: i * Boundary.height + offset.y - 2,
           },
           image: inspectorImg,
           frames: {
@@ -475,8 +489,8 @@ charactersMap.forEach((row, i) => {
     if (symbol !== 0) {
       let characterBoundary = new Boundary({
         position: {
-          x: j * Boundary.width + offset.x + 4,
-          y: i * Boundary.height + offset.y + 3,
+          x: j * Boundary.width + offset.x,
+          y: i * Boundary.height + offset.y,
         },
       })
       boundaries.push(

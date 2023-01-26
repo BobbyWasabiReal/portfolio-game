@@ -11,7 +11,7 @@ class Boundary {
 
   draw() {
     // The " c.fillStyle = "rgba(255, 0, 0, 0.0)" " is more of a debugging tool for the boundaries
-    c.fillStyle = "rgba(255, 0, 0, 0.3)";
+    c.fillStyle = "rgba(255, 0, 0, 0.0)";
     // The Boundaries are drawn as a rectangle.
     // Position is the where the boundary is placed (kinda obvious).
     // Width & Height are the width and height of the boundary (I should probably become a detective... xD).
