@@ -16,6 +16,7 @@ function checkForCharacterCollision({
   player,
   characterOffset = { x: 0, y: 0 }
 }) {
+  player.interactionAsset = null;
   // Loop through all characters
   for (let i = 0; i < characters.length; i++) {
     const character = characters[i];
@@ -33,7 +34,8 @@ function checkForCharacterCollision({
         }
       })
     ) {
-      return character;
+      player.interactionAsset = character;
+      break;
     }
   }
 }

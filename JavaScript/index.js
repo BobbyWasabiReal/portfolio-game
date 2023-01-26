@@ -72,20 +72,54 @@ battleZonesMap.forEach((row, i) => {
   });
 });
 
+// Character Images
 const characters = [];
+
+// Villager
 const villagerImg = new Image();
 villagerImg.src = "./Images/Characters/Villager/Idle.png";
 
+// oldMan
 const oldManImg = new Image();
 oldManImg.src = "./Images/Characters/OldMan/OldMan.png";
 
+// CaveGirl
+const caveGirlImg = new Image();
+caveGirlImg.src = "./Images/Characters/Cavegirl/Idle.png";
+
+// Sign
+const signImg = new Image();
+signImg.src = "./Images/Characters/Sign/Sign.png";
+
+// Inspector
+const inspectorImg = new Image();
+inspectorImg.src = "./Images/Characters/Inspector/Inspector.png";
+
+// RedNinja2 (left)
+const RedNinja2LImg = new Image();
+RedNinja2LImg.src = "./Images/Characters/RedNinja2/RedNinja2(left).png";
+
+// RedNinja2 (right)
+const RedNinja2RImg = new Image();
+RedNinja2RImg.src = "./Images/Characters/RedNinja2/RedNinja2(right).png";
+
+// Master
+const masterImg = new Image();
+masterImg.src = "./Images/Characters/Master/Master.png";
+
+// Monk2
+const monk2Img = new Image();
+monk2Img.src = "./Images/Characters/Monk2/Monk2.png";
+
+// Characters
 charactersMap.forEach((row, i) => {
   row.forEach((symbol, j) => {
+    // If the symbol is 211, push villager to the characters array.
     if (symbol === 211) {
       characters.push(
-        new Sprite({
+        new Character({
           position: {
-            x: j * Boundary.width + offset.x + 8,
+            x: j * Boundary.width + offset.x + 3,
             y: i * Boundary.height + offset.y + 3,
           },
           image: villagerImg,
@@ -93,13 +127,16 @@ charactersMap.forEach((row, i) => {
             max: 4,
             hold: 60,
           },
-          scale: 2.5
+          scale: 3.2,
+          dialogue: ["...", "I am new to the neighborhood."],
         })
       );
     }
+
+    // If the symbol is 43, push OldMan to the characters array.
     if (symbol === 43) {
       characters.push(
-        new Sprite({
+        new Character({
           position: {
             x: j * Boundary.width + offset.x,
             y: i * Boundary.height + offset.y,
@@ -109,19 +146,229 @@ charactersMap.forEach((row, i) => {
             max: 4,
             hold: 60,
           },
-          scale: 2.6
+          scale: 3.2,
+          dialogue: [
+          "...", 
+          "My Restaurant is closed for the day, because all of my supplies went missing."
+        ],
         })
       );
     }
 
-    if (symbol !== 0) {
-      boundaries.push(
-        new Boundary({
+    // If the symbol is 654, push Sign (Dojo) to the characters array.
+    if (symbol === 654) {
+      characters.push(
+        new Character({
+          position: {
+            x: j * Boundary.width + offset.x,
+            y: i * Boundary.height + offset.y,
+          },
+          image: signImg,
+          frames: {
+            max: 1,
+            hold: 60,
+          },
+          scale: 1.2,
+          dialogue: ["...", '"The Experience Dojo"'],
+        })
+      );
+    }
+
+    // If the symbol is 309, push Sign (Project) to the characters array.
+    if (symbol === 309) {
+      characters.push(
+        new Character({
           position: {
             x: j * Boundary.width + offset.x + 4,
-            y: i * Boundary.height + offset.y + 3,
-          }
+            y: i * Boundary.height + offset.y,
+          },
+          image: signImg,
+          frames: {
+            max: 1,
+            hold: 60,
+          },
+          scale: 1.2,
+          dialogue: ["...", '"Welcome to Project City!"'],
         })
+      );
+    }
+
+    // If the symbol is 962, push Sign (Skills) to the characters array.
+    if (symbol === 962) {
+      characters.push(
+        new Character({
+          position: {
+            x: j * Boundary.width + offset.x,
+            y: i * Boundary.height + offset.y,
+          },
+          image: signImg,
+          frames: {
+            max: 1,
+            hold: 60,
+          },
+          scale: 1.2,
+          dialogue: ["...", '"Welcome to Skill Town"'],
+        })
+      );
+    }
+
+    // If the symbol is 2492, push Cavegirl to the characters array.
+    if (symbol === 2492) {
+      characters.push(
+        new Character({
+          position: {
+            x: j * Boundary.width + offset.x,
+            y: i * Boundary.height + offset.y,
+          },
+          image: caveGirlImg,
+          frames: {
+            max: 1,
+            hold: 60,
+          },
+          scale: 1.2,
+          dialogue: [
+            "Beautiful day, isn't it?", 
+            "Also, let me know if find missing items around the island.",
+            "There have been reports of pots, pans, and food being stolen from the village.",
+            "Rumor has it that they're being stolen by man-sized racoons.",
+            "Weird..."
+        ],
+        })
+      );
+    }
+
+    // If the symbol is 2486, push RedNinja(2) (left) to the characters array.
+    if (symbol === 2486) {
+      characters.push(
+        new Character({
+          position: {
+            x: j * Boundary.width + offset.x,
+            y: i * Boundary.height + offset.y,
+          },
+          image: RedNinja2LImg,
+          frames: {
+            max: 1,
+            hold: 60,
+          },
+          scale: 1.2,
+          dialogue: [
+            "...", 
+            "This training is tough..."
+        ],
+        })
+      );
+    }
+
+    // If the symbol is 2479, push RedNinja(2) (right) to the characters array.
+    if (symbol === 2479) {
+      characters.push(
+        new Character({
+          position: {
+            x: j * Boundary.width + offset.x,
+            y: i * Boundary.height + offset.y,
+          },
+          image: RedNinja2RImg,
+          frames: {
+            max: 1,
+            hold: 60,
+          },
+          scale: 1.2,
+          dialogue: [
+            "Programming is easy!", 
+            "...",
+            "I hope... :(",
+        ],
+        })
+      );
+    }
+
+    // If the symbol is 2508, push Master to the characters array.
+    if (symbol === 2508) {
+      characters.push(
+        new Character({
+          position: {
+            x: j * Boundary.width + offset.x,
+            y: i * Boundary.height + offset.y,
+          },
+          image: masterImg,
+          frames: {
+            max: 1,
+            hold: 60,
+          },
+          scale: 1.2,
+          dialogue: [
+            "Hello and Welcome to the Experience Dojo!", 
+            "Gabriel's previous experience(s) is/are...",
+            "as a Volunteer Sound Technician...",
+            "From 2018 - current, He has worked with a team of 6 to maintain and manage the sound system.",
+        ],
+        })
+      );
+    }
+
+    // If the symbol is 2455, push Monk2 to the characters array.
+    if (symbol === 2455) {
+      characters.push(
+        new Character({
+          position: {
+            x: j * Boundary.width + offset.x,
+            y: i * Boundary.height + offset.y,
+          },
+          image: monk2Img,
+          frames: {
+            max: 1,
+            hold: 60,
+          },
+          scale: 1.2,
+          dialogue: [
+            "...",
+            "The ocean sure is beautiful today!"
+        ],
+        })
+      );
+    }
+
+    // If the symbol is 2426, push Inspector to the characters array.
+    if (symbol === 2426) {
+      characters.push(
+        new Character({
+          position: {
+            x: j * Boundary.width + offset.x,
+            y: i * Boundary.height + offset.y,
+          },
+          image: inspectorImg,
+          frames: {
+            max: 1,
+            hold: 60,
+          },
+          scale: 1.2,
+          dialogue: [
+            "Hello and Welcome To My Portfolio Page!", 
+            "Use WASD to move around, and the spacebar to interact (I'm sure you figured that out).",
+            "To the West (left) is Skill Town...",
+            'Talk to the Samurai to learn more about my technical and "soft" skills.',
+            "To the East (right) is Project City...",
+            "There you can talk to the Mayor to learn more about my projects.",
+            "To the North (up) is Experience Dojo...",
+            "Talk to the Master of the Dojo to learn about my previous experiences.",
+            "There is also tall grass where you can encounter monsters (please don't sue me Pokémon :( ).",
+            "To combat the wild monsters, you have a level 5 Nohtyp (python backwards)!",
+            "Good luck and thank you for playing! :)"
+        ],
+        })
+      );
+    }
+
+    // If the symbol is not 0, create & push a new boundary to the boundaries array.
+    if (symbol !== 0) {
+      let characterBoundary = new Boundary({
+        position: {
+          x: j * Boundary.width + offset.x + 4,
+          y: i * Boundary.height + offset.y + 3,
+        },
+      })
+      boundaries.push(
+        characterBoundary
       );
     }
   });
@@ -200,16 +447,16 @@ const movables = [
   ...boundaries,
   foreground,
   ...battleZones,
-  ...characters
-]
+  ...characters,
+];
 const renderables = [
   background,
   ...boundaries,
   ...battleZones,
   ...characters,
   player,
-  foreground
-]
+  foreground,
+];
 
 // Battle Object
 const battle = {
@@ -291,7 +538,7 @@ function animate() {
     checkForCharacterCollision({
       characters,
       player,
-      characterOffset: { x: 0, y: 3 }
+      characterOffset: { x: 0, y: 3 },
     });
     for (let i = 0; i < boundaries.length; i++) {
       const boundary = boundaries[i];
@@ -322,7 +569,7 @@ function animate() {
     checkForCharacterCollision({
       characters,
       player,
-      characterOffset: { x: 3, y: 0 }
+      characterOffset: { x: 3, y: 0 },
     });
     for (let i = 0; i < boundaries.length; i++) {
       const boundary = boundaries[i];
@@ -353,7 +600,7 @@ function animate() {
     checkForCharacterCollision({
       characters,
       player,
-      characterOffset: { x: 0, y: -3 }
+      characterOffset: { x: 0, y: -3 },
     });
     for (let i = 0; i < boundaries.length; i++) {
       const boundary = boundaries[i];
@@ -384,7 +631,7 @@ function animate() {
     checkForCharacterCollision({
       characters,
       player,
-      characterOffset: { x: -3, y: 0 }
+      characterOffset: { x: -3, y: 0 },
     });
     for (let i = 0; i < boundaries.length; i++) {
       const boundary = boundaries[i];
@@ -429,8 +676,47 @@ const battleBackground = new Sprite({
 
 // Key Press & Release Event Listeners
 let lastKey = "";
+const dialogueBox = document.querySelector("#dialogue-box");
 window.addEventListener("keydown", (e) => {
+  // Prevent the spacebar from scrolling down the page
+  if(e.keyCode == 32 && e.target == document.body) {
+    e.preventDefault();
+  }
+  // check if player is interacting with a character/npc
+  if (player.isInteracting) {
+    switch (e.key) {
+      case " ":
+        // When the player presses space, display the next dialogue
+        player.interactionAsset.dialogueIndex++;
+
+        // Check if there is more dialogue to display
+        // If so, display it.
+        const { dialogueIndex, dialogue } = player.interactionAsset;
+        if (dialogueIndex <= dialogue.length - 1) {
+          dialogueBox.innerHTML =
+            player.interactionAsset.dialogue[dialogueIndex];
+          return;
+        }
+
+        // finish the conversation
+        player.isInteracting = false;
+        player.interactionAsset.dialogueIndex = 0;
+        dialogueBox.style.display = "none";
+
+        break;
+    }
+    return;
+  }
   switch (e.key) {
+    case " ":
+      if (!player.interactionAsset) return;
+
+      // beginning the conversation
+      const firstMessage = player.interactionAsset.dialogue[0];
+      dialogueBox.innerHTML = firstMessage;
+      dialogueBox.style.display = "flex";
+      player.isInteracting = true;
+      break;
     case "w":
       keys.w.pressed = true;
       lastKey = "w";

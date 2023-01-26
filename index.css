@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 canvas {
   border: 10px rgb(60, 60, 60) solid;
 }
@@ -171,6 +175,22 @@ footer a:hover, nav a:hover {
   opacity: 0;
   pointer-events: none;
   z-index: 10;
+}
+
+#dialogue-box {
+  font-family: 'Press Start 2P';
+  display: flex;
+  background-color: white;
+  position: absolute;
+  height: 95px;
+  left: 10px;
+  right: 10px;
+  bottom: 14px;
+  border-top: 4px black solid;
+  display: none;
+  padding: 12px;
+  text-align: left;
+  line-height: 1.6;
 }
 
 #interface {
