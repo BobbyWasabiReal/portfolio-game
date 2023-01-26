@@ -107,9 +107,25 @@ RedNinja2RImg.src = "./Images/Characters/RedNinja2/RedNinja2(right).png";
 const masterImg = new Image();
 masterImg.src = "./Images/Characters/Master/Master.png";
 
+// Monk
+const monkImg = new Image();
+monkImg.src = "./Images/Characters/Monk/Monk.png";
+
 // Monk2
 const monk2Img = new Image();
 monk2Img.src = "./Images/Characters/Monk2/Monk2.png";
+
+// OldMan2
+const oldMan2Img = new Image();
+oldMan2Img.src = "./Images/Characters/OldMan2/OldMan2.png";
+
+// Samurai
+const samuraiImg = new Image();
+samuraiImg.src = "./Images/Characters/Samurai/Samurai.png";
+
+// Mayor
+const mayorImg = new Image();
+mayorImg.src = "./Images/Characters/Mayor/Mayor.png";
 
 // Characters
 charactersMap.forEach((row, i) => {
@@ -306,6 +322,27 @@ charactersMap.forEach((row, i) => {
       );
     }
 
+    // If the symbol is 2444, push Monk to the characters array.
+    if (symbol === 2444) {
+      characters.push(
+        new Character({
+          position: {
+            x: j * Boundary.width + offset.x,
+            y: i * Boundary.height + offset.y,
+          },
+          image: monkImg,
+          frames: {
+            max: 1,
+            hold: 60,
+          },
+          scale: 1.2,
+          dialogue: [
+            "Someone stole my food :(."
+        ],
+        })
+      );
+    }
+
     // If the symbol is 2455, push Monk2 to the characters array.
     if (symbol === 2455) {
       characters.push(
@@ -322,7 +359,83 @@ charactersMap.forEach((row, i) => {
           scale: 1.2,
           dialogue: [
             "...",
-            "The ocean sure is beautiful today!"
+            "The ocean sure is beautiful today."
+        ],
+        })
+      );
+    }
+
+    // If the symbol is 2468, push OldMan2 to the characters array.
+    if (symbol === 2468) {
+      characters.push(
+        new Character({
+          position: {
+            x: j * Boundary.width + offset.x,
+            y: i * Boundary.height + offset.y,
+          },
+          image: oldMan2Img,
+          frames: {
+            max: 1,
+            hold: 60,
+          },
+          scale: 1.2,
+          dialogue: [
+            "Why can't you climb the ladder?",
+            "Because I like to polish my ladders.",
+            "...",
+            "You don't do that?!"
+        ],
+        })
+      );
+    }
+
+    // If the symbol is 2528, push Samurai to the characters array.
+    if (symbol === 2528) {
+      characters.push(
+        new Character({
+          position: {
+            x: j * Boundary.width + offset.x,
+            y: i * Boundary.height + offset.y,
+          },
+          image: samuraiImg,
+          frames: {
+            max: 1,
+            hold: 60,
+          },
+          scale: 1.2,
+          dialogue: [
+            "Greetings traveler!",
+            "I am the Samurai.",
+            "Gabriel's technical skills include...",
+            "HTML, CSS, JavaScript, React, Node, Express, MongoDB, Python, Django, and more.",
+            "Gabriel's soft skills include...",
+            "Front-End Development, Team Collaboration, Engineering Management, Critical Thinking, Time Management, and Testing/Troubleshooting.",
+        ],
+        })
+      );
+    }
+
+    // If the symbol is 2384, push Mayor to the characters array.
+    if (symbol === 2384) {
+      characters.push(
+        new Character({
+          position: {
+            x: j * Boundary.width + offset.x,
+            y: i * Boundary.height + offset.y,
+          },
+          image: mayorImg,
+          frames: {
+            max: 1,
+            hold: 60,
+          },
+          scale: 1.2,
+          dialogue: [
+            "Hello, and welcome to Project City!",
+            "I am the mayor...",
+            "Some of Gabriel's Projects are...",
+            "Simon",
+            'Github: <a src="https://github.com/BobbyWasabiReal/Project-1-Browser-Based-Game">Link</a>',
+            "Front-End Development, Team Collaboration, Engineering Management, Critical Thinking, Time Management, and Testing/Troubleshooting.",
         ],
         })
       );
