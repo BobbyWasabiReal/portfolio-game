@@ -434,8 +434,7 @@ charactersMap.forEach((row, i) => {
             "I am the mayor...",
             "Some of Gabriel's Projects are...",
             "Simon",
-            'Github: <a src="https://github.com/BobbyWasabiReal/Project-1-Browser-Based-Game">Link</a>',
-            "Front-End Development, Team Collaboration, Engineering Management, Critical Thinking, Time Management, and Testing/Troubleshooting.",
+            // 'Github: <a src="https://github.com/BobbyWasabiReal/Project-1-Browser-Based-Game">Link</a>',
         ],
         })
       );
